@@ -31,13 +31,15 @@ class ATestingGroundsCharacter : public ACharacter
 	UPROPERTY(EditDefaultsOnly, Category = Projectile)
 	TSubclassOf<class AGunActor> DefaultGunClass;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	class UAnimMontage* FireAnimation;
+	
 
 	AGunActor* Gun = nullptr;
 
 public:
 	ATestingGroundsCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	class UAnimMontage* FireAnimation;
 
 protected:
 	virtual void BeginPlay();
