@@ -4,14 +4,10 @@
 #include "TestingGroundsProjectile.h"
 #include "Classes/Components/SkeletalMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "Classes/Engine/World.h"
 
 AGunActor::AGunActor()
 {
 	FP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FP_Gun"));
-	FP_Gun->SetOnlyOwnerSee(true);			
-	FP_Gun->bCastDynamicShadow = false;
-	FP_Gun->CastShadow = false;
 }
 
 void AGunActor::OnFire()
@@ -21,7 +17,7 @@ void AGunActor::OnFire()
 		UWorld* const World = GetWorld();
 		if (World != NULL)
 		{
-			const FRotator SpawnRotation = GetActorRotation();
+			const FRotator SpawnRotation = FP_Gun->GetSocketRotation(MuzzleSocket);
 			// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
 			const FVector SpawnLocation = FP_Gun->GetSocketLocation(MuzzleSocket);
 
