@@ -14,8 +14,7 @@ class ATestingGroundsCharacter : public ACharacter
 	GENERATED_BODY()
 
 	/** Pawn mesh: 1st person view (arms; seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
-	class USkeletalMeshComponent* Mesh1P;
+	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FirstPersonCameraComponent;
@@ -31,15 +30,13 @@ class ATestingGroundsCharacter : public ACharacter
 	UPROPERTY(EditDefaultsOnly, Category = Projectile)
 	TSubclassOf<class AGunActor> DefaultGunClass;
 
-	
-
 	AGunActor* Gun = nullptr;
 
 public:
 	ATestingGroundsCharacter();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	class UAnimMontage* FireAnimation;
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	class USkeletalMeshComponent* Mesh1P;
 
 protected:
 	virtual void BeginPlay();
