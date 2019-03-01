@@ -35,8 +35,6 @@ void AGunActor::OnFire()
 				UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 			}
 			
-			// try and play a firing animation if specified
-			
 			if (FireAnimation != NULL)
 			{
 			// Get the animation object for the arms mesh
@@ -49,7 +47,6 @@ void AGunActor::OnFire()
 						AnimInstance->Montage_Play(FireAnimation, 1.f);
 					}
 				}
-			
 			}
 		}
 	}
