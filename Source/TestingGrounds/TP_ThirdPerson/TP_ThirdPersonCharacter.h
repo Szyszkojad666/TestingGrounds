@@ -18,6 +18,7 @@ class ATP_ThirdPersonCharacter : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+	
 public:
 	ATP_ThirdPersonCharacter();
 
@@ -29,8 +30,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* GunMesh;
+	UPROPERTY(EditDefaultsOnly, Category = Weapon)
+	TSubclassOf<class AGunActor> DefaultGunClass;
+
+	AGunActor* Gun = nullptr;
 
 protected:
 
