@@ -11,6 +11,7 @@
 #include "Classes/Components/SkeletalMeshComponent.h"
 #include "Classes/Components/ChildActorComponent.h"
 #include "GunActor.h"
+#include "Classes/Engine/World.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ATP_ThirdPersonCharacter
@@ -76,6 +77,24 @@ void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(class UInputComponent* 
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ATP_ThirdPersonCharacter::OnResetVR);
+}
+
+void ATP_ThirdPersonCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	UWorld* const World = GetWorld();
+	
+	if (World != NULL)
+	{
+		FActorSpawnParameters ActorSpawnParams;
+		USkeletalMeshComponent* Mesh = Cast<USkeletalMeshComponent>(GetMesh());
+		ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+		Gun = World->SpawnActor<AGunActor>(DefaultGunClass, GetActorLocation(), GetActorRotation(), ActorSpawnParams);
+		if (Gun && Mesh)
+		{
+			Gun->AttachToComponent(Mesh, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), Gun->AttachSocket);
+		}
+	}
 }
 
 
