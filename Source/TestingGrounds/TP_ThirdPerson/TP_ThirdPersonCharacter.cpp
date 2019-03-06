@@ -98,6 +98,14 @@ void ATP_ThirdPersonCharacter::BeginPlay()
 }
 
 
+void ATP_ThirdPersonCharacter::Fire()
+{
+	if (Gun)
+	{
+		Gun->OnFire();
+	}
+}
+
 void ATP_ThirdPersonCharacter::OnResetVR()
 {
 	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();

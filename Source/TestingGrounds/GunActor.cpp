@@ -34,20 +34,6 @@ void AGunActor::OnFire()
 			{
 				UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 			}
-			
-			if (FireAnimation != NULL)
-			{
-			// Get the animation object for the arms mesh
-				ATestingGroundsCharacter* MyOwner = Cast<ATestingGroundsCharacter>(GetAttachParentActor());
-				if (MyOwner)
-				{
-					UAnimInstance* AnimInstance = MyOwner->Mesh1P->GetAnimInstance();
-					if (AnimInstance != NULL)
-					{
-						AnimInstance->Montage_Play(FireAnimation, 1.f);
-					}
-				}
-			}
 		}
 	}
 }

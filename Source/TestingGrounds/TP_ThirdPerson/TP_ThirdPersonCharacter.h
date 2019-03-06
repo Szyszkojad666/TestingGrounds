@@ -33,6 +33,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Weapon)
 	TSubclassOf<class AGunActor> DefaultGunClass;
 
+	UFUNCTION(BlueprintCallable)
+	void Fire();
+
 	AGunActor* Gun = nullptr;
 
 protected:

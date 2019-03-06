@@ -127,6 +127,14 @@ void ATestingGroundsCharacter::OnFire()
 	if (Gun != NULL)
 	{
 		Gun->OnFire();
+		if (FireAnimation != NULL)
+		{
+				UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+				if (AnimInstance != NULL)
+				{
+					AnimInstance->Montage_Play(FireAnimation, 1.f);
+				}
+		}
 	}
 }
 
